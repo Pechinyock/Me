@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+    dotnet-builder:
+      container_name: dotnet-builder
+      volumes:
+        - outbin:/tmp/${PROJECT_NAME}/bin
+      build: 
+        context: ./dotnet-builder
+        args:
+          - DOTNET_SDK_VERSION=${DOTNET_SDK_VERSION}
+          - PROJECT_NAME=${PROJECT_NAME}
+      ports:
+        - 5000:5000
+      stdin_open: true # docker run -i
+      tty: true        # docker run -t
+
+volumes:
+  outbin:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./
+  

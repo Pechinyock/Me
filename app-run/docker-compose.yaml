@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+    dotnet-runner:
+      container_name: dotnet-runner
+      volumes:
+        - app-bin:${APP_ROOT_DIRECTORY}
+      build: 
+        context: ./app-api
+        args:
+          - ASP_CORE_RUNTIME_VERSION=${ASP_CORE_RUNTIME_VERSION}
+          - APP_ROOT_DIRECTORY=${APP_ROOT_DIRECTORY}
+      environment:
+        - APP_ENTRYPOINT=${APP_ENTRYPOINT}
+      ports:
+        - 6969:5000
+      stdin_open: true # docker run -i
+      tty: true        # docker run -t
+
+volumes:
+  app-bin:
+    name: app-bin

@@ -1,14 +1,14 @@
 ARG ASP_CORE_RUNTIME_VERSION="9.0"
-ARG APP_NAME="project_name"
+ARG PROJECT_NAME="project_name"
 
 FROM debian:bookworm AS debian-dotnet
 
-ARG APP_NAME
+ARG PROJECT_NAME
 ARG ASP_CORE_RUNTIME_VERSION
 
 ENV EXECUTABLE_NAME=${EXECUTABLE_NAME}
 
-COPY ${APP_NAME} /lib/bin/${APP_NAME}
+# COPY ${PROJECT_NAME} /lib/bin/${PROJECT_NAME}
 
 # install dotnet sdk
 RUN apt update &&\
@@ -19,6 +19,6 @@ RUN apt update &&\
     apt-get update &&\
     apt-get install -y aspnetcore-runtime-${ASP_CORE_RUNTIME_VERSION}
 
-WORKDIR /lib/bin/${APP_NAME}
+ WORKDIR /lib/${PROJECT_NAME}
 
-CMD [ "sh", "-c", "dotnet ${EXECUTABLE_NAME}"]
+ CMD [ "sh", "-c", "dotnet ${EXECUTABLE_NAME}"]

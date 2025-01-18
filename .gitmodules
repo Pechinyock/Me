@@ -1,0 +1,3 @@
+[submodule "app-build/dotnet-builder/TaskTrainAPI"]
+	path = app-build/dotnet-builder/TaskTrainAPI
+	url = https://github.com/Pechinyock/TaskTrainAPI.git

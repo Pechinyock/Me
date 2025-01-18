@@ -4,7 +4,7 @@ services:
     dotnet-builder:
       container_name: dotnet-builder
       volumes:
-        - app-bin:/tmp/${PROJECT_NAME}/WebAPI/bin/${BUILD_CONFIGURATION}/net${DOTNET_SDK_VERSION}
+        - app-bin:/tmp/${PROJECT_NAME}/Bin/${BUILD_CONFIGURATION}/net${DOTNET_SDK_VERSION}
       build: 
         context: ./dotnet-builder
         args:

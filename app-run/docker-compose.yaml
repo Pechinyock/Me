@@ -14,9 +14,15 @@ services:
         - APP_ENTRYPOINT=${APP_ENTRYPOINT}
       ports:
         - 6969:5000
+      networks:
+        - app-storage_tt-api
       stdin_open: true # docker run -i
       tty: true        # docker run -t
 
 volumes:
   app-bin:
     name: app-bin
+
+networks:
+  app-storage_tt-api:
+    external: true

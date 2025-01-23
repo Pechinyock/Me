@@ -1,18 +1,32 @@
 version: '3.9'
 
 services:
-    dotnet-builder:
-      container_name: dotnet-builder
+    dotnet-api-builder:
+      container_name: dotnet-api-builder
       volumes:
-        - app-bin:/tmp/${PROJECT_NAME}/Bin/${BUILD_CONFIGURATION}/net${DOTNET_SDK_VERSION}
+        - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
       build: 
         context: ./dotnet-builder
         args:
-          - DOTNET_SDK_VERSION=${DOTNET_SDK_VERSION}
-          - PROJECT_NAME=${PROJECT_NAME}
+          - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
+          - PROJECT_NAME=${API_PROJECT_NAME}
+      stdin_open: true # docker run -i
+      tty: true        # docker run -t
+
+    dotnet-webclient-builder:
+      container_name: dotnet-webclient-builder
+      volumes:
+        - app-webclient-bin:/tmp/${WEBCLIENT_PROJECT_NAME}/Bin/${WEBCLIENT_BUILD_CONFIGURATION}/net${WEBCLIENT_DOTNET_SDK_VERSION}
+      build: 
+        context: ./dotnet-builder
+        args:
+          - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
+          - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
       stdin_open: true # docker run -i
       tty: true        # docker run -t
 
 volumes:
-  app-bin:
-    name: app-bin
+  app-api-bin:
+    name: app-api-bin
+  app-webclient-bin:
+    name: app-webclient-bin

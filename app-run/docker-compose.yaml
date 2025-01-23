@@ -1,10 +1,10 @@
 version: '3.9'
 
 services:
-    dotnet-runner:
-      container_name: dotnet-runner
+    dotnet-api-runner:
+      container_name: dotnet-api-runner
       volumes:
-        - app-bin:${APP_ROOT_DIRECTORY}
+        - app-api-bin:${APP_ROOT_DIRECTORY}
       build: 
         context: ./app-api
         args:
@@ -20,8 +20,8 @@ services:
       tty: true        # docker run -t
 
 volumes:
-  app-bin:
-    name: app-bin
+  app-api-bin:
+    name: app-api-bin
 
 networks:
   app-storage_tt-api:

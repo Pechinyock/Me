@@ -1,0 +1,9 @@
+/* [X] - Not done; [V] - Done */
+
+[X] [TT-01] Shared libraries
+    - TT.Core. For now it is in TT.Api solution, but sould be shared.
+        [X] Folder app-shared libs/dotnet
+        [X] Container with nuget server
+        [X] In app-build/dotnet/shared solution with shared libs
+
+[X] [TT-02] Add webclient as submodule

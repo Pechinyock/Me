@@ -6,4 +6,13 @@
         [X] Container with nuget server
         [X] In app-build/dotnet/shared solution with shared libs
 
-[X] [TT-02] Add webclient as submodule
+[V] [TT-02] Add webclient as submodule
+
+[X] [TT-03] Asp has AuthOptions in Auth.JwtOptions remake my to asp one.
+            it is implement IAuthOptions so it could be injected direcly in to controller(my guess);
+
+[X] [TT-04] Create another service with GraphGL.
+[X] [TT-05] TT.API Becomes TaskTrainAuth
+                - REST
+                - Has his own database. Might be good idida to support many dbs like pg + sqlite
+                - Only sends access tokens to clients 

@@ -25,8 +25,8 @@ services:
     #   stdin_open: true # docker run -i
     #   tty: true        # docker run -t
     
-  dotnet-lib-builder:
-    container_name: dotnet-webclient-builder
+  dotnet-libs-builder:
+    container_name: dotnet-libs-builder
     build: 
       context: ./dotnet-builder
       dockerfile: Dockerfile-packages
@@ -34,9 +34,9 @@ services:
         - DOTNET_SDK_VERSION=${LIB_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${LIB_PROJECT_NAME}
     networks:
-       - dotnet-package-server_tt-packages
+       - app-packages_tt-packages
     command: ["sh", "-c", "dotnet build;
-        
+        bash
         "]
     stdin_open: true # docker run -i
     tty: true        # docker run -t
@@ -48,5 +48,5 @@ services:
 #     name: app-webclient-bin
 
 networks:
-  dotnet-package-server_tt-packages:
+  app-packages_tt-packages:
     external: true

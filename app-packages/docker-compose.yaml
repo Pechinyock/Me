@@ -4,15 +4,20 @@ services:
   dotnet-packages:
     env_file: .env
     container_name: dotnet-packages
+    environment:
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORTS=${HTTPS_PORT}
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERTIFICATE_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=${CERTIFICATE_FULL_PATH}
     volumes:
       - dotnet-packages-storage:/var/baget
-    build: 
+    build:
       context: ./BaGet
     networks:
       - tt-packages
     ports:
       - 9966:80
-      - 6699:443
+      - ${HTTPS_PORT}:443
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 

@@ -4,3 +4,6 @@
 [submodule "app-build/dotnet-builder/TaskTrainWebClient"]
 	path = app-build/dotnet-builder/TaskTrainWebClient
 	url = https://github.com/Pechinyock/TaskTrainWebClient.git
+[submodule "app-build/dotnet-builder/TaskTrainLib"]
+	path = app-build/dotnet-builder/TaskTrainLib
+	url = https://github.com/Pechinyock/TaskTrainLib.git

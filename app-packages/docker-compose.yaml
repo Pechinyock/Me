@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  dotnet-packages:
+    env_file: .env
+    container_name: dotnet-packages
+    volumes:
+      - dotnet-packages-storage:/var/baget
+    build: 
+      context: ./BaGet
+    networks:
+      - tt-packages
+    ports:
+      - 9966:80
+      - 6699:443
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+volumes:
+  dotnet-packages-storage:
+    name: dotnet-packages-storage
+
+networks:
+  tt-packages:
+    driver: bridge

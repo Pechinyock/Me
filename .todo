@@ -15,4 +15,7 @@
 [X] [TT-05] TT.API Becomes TaskTrainAuth
                 - REST
                 - Has his own database. Might be good idida to support many dbs like pg + sqlite
-                - Only sends access tokens to clients 
+                - Only sends access tokens to clients
+
+[X] [TT-06] Pass configuration env variable to use in dotnet build command
+[X] [TT-07] Rename all "maseter" branches to "main" 

@@ -1,29 +1,29 @@
 version: '3.9'
 
 services:
-    # dotnet-api-builder:
-    #   container_name: dotnet-api-builder
-    #   volumes:
-    #     - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
-    #   build: 
-    #     context: ./dotnet-builder
-    #     args:
-    #       - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
-    #       - PROJECT_NAME=${API_PROJECT_NAME}
-    #   stdin_open: true # docker run -i
-    #   tty: true        # docker run -t
+  dotnet-api-builder:
+    container_name: dotnet-api-builder
+    volumes:
+      - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
+    build: 
+      context: ./dotnet-builder
+      args:
+        - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
+        - PROJECT_NAME=${API_PROJECT_NAME}
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
 
-    # dotnet-webclient-builder:
-    #   container_name: dotnet-webclient-builder
-    #   volumes:
-    #     - app-webclient-bin:/tmp/${WEBCLIENT_PROJECT_NAME}/Bin/${WEBCLIENT_BUILD_CONFIGURATION}/net${WEBCLIENT_DOTNET_SDK_VERSION}
-    #   build: 
-    #     context: ./dotnet-builder
-    #     args:
-    #       - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
-    #       - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
-    #   stdin_open: true # docker run -i
-    #   tty: true        # docker run -t
+  dotnet-webclient-builder:
+    container_name: dotnet-webclient-builder
+    volumes:
+      - app-webclient-bin:/tmp/${WEBCLIENT_PROJECT_NAME}/Bin/${WEBCLIENT_BUILD_CONFIGURATION}/net${WEBCLIENT_DOTNET_SDK_VERSION}
+    build: 
+      context: ./dotnet-builder
+      args:
+        - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
+        - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     
   dotnet-libs-builder:
     container_name: dotnet-libs-builder
@@ -36,16 +36,16 @@ services:
     networks:
        - app-packages_tt-packages
     command: ["sh", "-c", "dotnet build;
-        bash
+        ./nuget-push.sh ${LIB_BUILD_CONFIGURATION} ${DOTNET_PACKAGE_SERVER_NAME} ${DOTNET_PACKAGE_SERVER_PORT} ${DOTNET_PACKAGE_API_KEY};
         "]
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 
-# volumes:
-#   app-api-bin:
-#     name: app-api-bin
-#   app-webclient-bin:
-#     name: app-webclient-bin
+volumes:
+  app-api-bin:
+    name: app-api-bin
+  app-webclient-bin:
+    name: app-webclient-bin
 
 networks:
   app-packages_tt-packages:

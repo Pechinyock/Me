@@ -6,6 +6,8 @@ FROM debian:bookworm AS debian-dotnet
 ARG PROJECT_NAME
 ARG DOTNET_SDK_VERSION
 
+ENV BUILD_CONFIGURATION=${BUILD_CONFIGURATION}
+
 COPY ${PROJECT_NAME} /tmp/${PROJECT_NAME}
 COPY ./_additional-package-sources /etc/opt/NuGet/Config
 
@@ -21,4 +23,4 @@ RUN apt update &&\
     dotnet nuget config set repositoryPath "etc/opt/NuGet/Config" --configfile "etc/opt/NuGet/Config/TaskTrainNuGet.Config"
 
 WORKDIR /tmp/${PROJECT_NAME}
-CMD [ "sh", "-c", "dotnet build" ]
+CMD [ "sh", "-c", "dotnet build --configuration ${BUILD_CONFIGURATION}" ]

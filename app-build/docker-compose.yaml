@@ -11,6 +11,8 @@ services:
       args:
         - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${API_PROJECT_NAME}
+    environment:
+      - BUILD_CONFIGURATION=${API_BUILD_CONFIGURATION}
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 
@@ -24,6 +26,8 @@ services:
       args:
         - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
+    environment:
+      - BUILD_CONFIGURATION=${WEBCLIENT_BUILD_CONFIGURATION}
     networks:
        - app-packages_tt-packages
     stdin_open: true # docker run -i
@@ -37,9 +41,11 @@ services:
       args:
         - DOTNET_SDK_VERSION=${LIB_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${LIB_PROJECT_NAME}
+    environment:
+      - BUILD_CONFIGURATION=${LIB_BUILD_CONFIGURATION}
     networks:
        - app-packages_tt-packages
-    command: ["sh", "-c", "dotnet build;
+    command: ["sh", "-c", "dotnet build --configuration ${LIB_BUILD_CONFIGURATION};
         ./nuget-push.sh ${LIB_BUILD_CONFIGURATION} ${DOTNET_PACKAGE_SERVER_NAME} ${DOTNET_PACKAGE_SERVER_PORT} ${DOTNET_PACKAGE_API_KEY};
         "]
     stdin_open: true # docker run -i

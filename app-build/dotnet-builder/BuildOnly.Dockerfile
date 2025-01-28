@@ -6,6 +6,8 @@ FROM debian:bookworm AS debian-dotnet
 ARG PROJECT_NAME
 ARG DOTNET_SDK_VERSION
 
+ENV BUILD_CONFIGURATION=${BUILD_CONFIGURATION}
+
 COPY ${PROJECT_NAME} /tmp/${PROJECT_NAME}
 
 RUN apt update &&\
@@ -18,4 +20,4 @@ RUN apt update &&\
 
 WORKDIR /tmp/${PROJECT_NAME}
 
-CMD [ "sh", "-c", "dotnet build" ]
+CMD [ "sh", "-c", "dotnet build --configuration ${BUILD_CONFIGURATION}" ]

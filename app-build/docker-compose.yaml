@@ -20,10 +20,12 @@ services:
       - app-webclient-bin:/tmp/${WEBCLIENT_PROJECT_NAME}/Bin/${WEBCLIENT_BUILD_CONFIGURATION}/net${WEBCLIENT_DOTNET_SDK_VERSION}
     build: 
       context: ./dotnet-builder
-      dockerfile: BuildOnly.Dockerfile
+      dockerfile: BuildWithLocalPackages.Dockerfile
       args:
         - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
+    networks:
+       - app-packages_tt-packages
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     

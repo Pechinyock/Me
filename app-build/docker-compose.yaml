@@ -7,6 +7,7 @@ services:
       - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
     build: 
       context: ./dotnet-builder
+      dockerfile: BuildOnly.Dockerfile
       args:
         - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${API_PROJECT_NAME}
@@ -19,6 +20,7 @@ services:
       - app-webclient-bin:/tmp/${WEBCLIENT_PROJECT_NAME}/Bin/${WEBCLIENT_BUILD_CONFIGURATION}/net${WEBCLIENT_DOTNET_SDK_VERSION}
     build: 
       context: ./dotnet-builder
+      dockerfile: BuildOnly.Dockerfile
       args:
         - DOTNET_SDK_VERSION=${WEBCLIENT_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${WEBCLIENT_PROJECT_NAME}
@@ -29,7 +31,7 @@ services:
     container_name: dotnet-libs-builder
     build: 
       context: ./dotnet-builder
-      dockerfile: Dockerfile-packages
+      dockerfile: BuildAndPushNuget.Dockerfile
       args:
         - DOTNET_SDK_VERSION=${LIB_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${LIB_PROJECT_NAME}

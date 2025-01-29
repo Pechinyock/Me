@@ -48,6 +48,8 @@ services:
       - AUTH_APP_ENTRYPOINT=${AUTH_APP_ENTRYPOINT}
     ports:
       - 9669:5000
+    networks:
+      - app-storage_tt-auth
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 
@@ -61,4 +63,6 @@ volumes:
 
 networks:
   app-storage_tt-api:
+    external: true
+  app-storage_tt-auth:
     external: true

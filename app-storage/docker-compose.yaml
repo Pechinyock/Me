@@ -1,7 +1,6 @@
 version: '3.9'
 
 services: 
-# postgres
   database:
     container_name: tt-api-db
     build: ./postgre
@@ -15,10 +14,25 @@ services:
     networks:
       - tt-api
 
+  auth-db:
+    container_name: tt-auth-db
+    build: ./postgre
+    volumes:
+      - tt-auth-storage:/var/lib/postgresql/data
+    ports:
+      - 11101:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - tt-auth
+
 volumes:
-#postgres
   tt-api-storage:
+  tt-auth-storage:
 
 networks:
   tt-api:
+    driver: bridge
+  tt-auth:
     driver: bridge

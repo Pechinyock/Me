@@ -7,12 +7,14 @@ services:
       - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
     build: 
       context: ./dotnet-builder
-      dockerfile: BuildOnly.Dockerfile
+      dockerfile: BuildWithLocalPackages.Dockerfile
       args:
         - DOTNET_SDK_VERSION=${API_DOTNET_SDK_VERSION}
         - PROJECT_NAME=${API_PROJECT_NAME}
     environment:
       - BUILD_CONFIGURATION=${API_BUILD_CONFIGURATION}
+    networks:
+      - app-packages_tt-packages
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 

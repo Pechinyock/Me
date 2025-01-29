@@ -7,3 +7,6 @@
 [submodule "app-build/dotnet-builder/TaskTrainLib"]
 	path = app-build/dotnet-builder/TaskTrainLib
 	url = https://github.com/Pechinyock/TaskTrainLib.git
+[submodule "app-build/dotnet-builder/TaskTrainAuthentication"]
+	path = app-build/dotnet-builder/TaskTrainAuthentication
+	url = https://github.com/Pechinyock/TaskTrainAuthentication.git

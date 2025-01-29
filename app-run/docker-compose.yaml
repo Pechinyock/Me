@@ -1,45 +1,63 @@
 version: '3.9'
 
 services:
-    dotnet-api-runner:
-      container_name: dotnet-api-runner
-      volumes:
-        - app-api-bin:${API_APP_ROOT_DIRECTORY}
-      build: 
-        context: ./app-api
-        args:
-          - API_ASP_CORE_RUNTIME_VERSION=${API_ASP_CORE_RUNTIME_VERSION}
-          - API_APP_ROOT_DIRECTORY=${API_APP_ROOT_DIRECTORY}
-      environment:
-        - API_APP_ENTRYPOINT=${API_APP_ENTRYPOINT}
-      ports:
-        - 6969:5000
-      networks:
-        - app-storage_tt-api
-      stdin_open: true # docker run -i
-      tty: true        # docker run -t
+  dotnet-api-runner:
+    container_name: dotnet-api-runner
+    volumes:
+      - app-api-bin:${API_APP_ROOT_DIRECTORY}
+    build: 
+      context: ./app-api
+      args:
+        - API_ASP_CORE_RUNTIME_VERSION=${API_ASP_CORE_RUNTIME_VERSION}
+        - API_APP_ROOT_DIRECTORY=${API_APP_ROOT_DIRECTORY}
+    environment:
+      - API_APP_ENTRYPOINT=${API_APP_ENTRYPOINT}
+    ports:
+      - 6969:5000
+    networks:
+      - app-storage_tt-api
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
 
-    dotnet-webclient-runner:
-      container_name: dotnet-webclient-runner
-      volumes:
-        - app-webclient-bin:${WEBCLIENT_APP_ROOT_DIRECTORY}
-      build: 
-        context: ./app-webclient
-        args:
-          - WEBCLIENT_ASP_CORE_RUNTIME_VERSION=${WEBCLIENT_ASP_CORE_RUNTIME_VERSION}
-          - WEBCLIENT_APP_ROOT_DIRECTORY=${WEBCLIENT_APP_ROOT_DIRECTORY}
-      environment:
-        - WEBCLIENT_APP_ENTRYPOINT=${WEBCLIENT_APP_ENTRYPOINT}
-      ports:
-        - 6996:5001
-      stdin_open: true # docker run -i
-      tty: true        # docker run -t
+  dotnet-webclient-runner:
+    container_name: dotnet-webclient-runner
+    volumes:
+      - app-webclient-bin:${WEBCLIENT_APP_ROOT_DIRECTORY}
+    build: 
+      context: ./app-webclient
+      args:
+        - WEBCLIENT_ASP_CORE_RUNTIME_VERSION=${WEBCLIENT_ASP_CORE_RUNTIME_VERSION}
+        - WEBCLIENT_APP_ROOT_DIRECTORY=${WEBCLIENT_APP_ROOT_DIRECTORY}
+    environment:
+      - WEBCLIENT_APP_ENTRYPOINT=${WEBCLIENT_APP_ENTRYPOINT}
+    ports:
+      - 6996:5001
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+  dotnet-auth-runner:
+    container_name: dotnet-auth-runner
+    volumes:
+      - app-auth-bin:${AUTH_APP_ROOT_DIRECTORY}
+    build: 
+      context: ./app-auth
+      args:
+        - AUTH_ASP_CORE_RUNTIME_VERSION=${AUTH_ASP_CORE_RUNTIME_VERSION}
+        - AUTH_APP_ROOT_DIRECTORY=${AUTH_APP_ROOT_DIRECTORY}
+    environment:
+      - AUTH_APP_ENTRYPOINT=${AUTH_APP_ENTRYPOINT}
+    ports:
+      - 9669:5000
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
 
 volumes:
   app-api-bin:
     name: app-api-bin
   app-webclient-bin:
     name: app-webclient-bin
+  app-auth-bin:
+    name: app-auth-bin
 
 networks:
   app-storage_tt-api:

@@ -1,7 +1,7 @@
 echo "Configuration: $1"
 echo "Server address: $2"
 echo "Server port: $3"
-echo "api key: $4"
+echo "Api key: $4"
 cd Bin/$1
 for f in *.nupkg
 do

@@ -1,12 +1,15 @@
 /* [X] - Not done; [V] - Done */
 
-[X] [TT-01] Shared libraries
+[V] [TT-01] Shared libraries
     - TT.Core. For now it is in TT.Api solution, but sould be shared.
-        [X] Folder app-shared libs/dotnet
-        [X] Container with nuget server
-        [X] In app-build/dotnet/shared solution with shared libs
+        [V] Folder app-shared libs/dotnet
+        [V] Container with nuget server
+        [V] In app-build/dotnet/shared solution with shared libs
 
 [V] [TT-02] Add webclient as submodule
+[V] [TT-06] Pass 'configuration' env variable to use in dotnet build command
+
+----------------------------------------------------------------------------------------------------
 
 [X] [TT-03] Asp has AuthOptions in Auth.JwtOptions remake my to asp one.
             it is implement IAuthOptions so it could be injected direcly in to controller(my guess);
@@ -17,5 +20,4 @@
                 - Has his own database. Might be good idida to support many dbs like pg + sqlite
                 - Only sends access tokens to clients
 
-[X] [TT-06] Pass configuration env variable to use in dotnet build command
-[X] [TT-07] Rename all "maseter" branches to "main" 
+[X] [TT-07] Rename all "maseter" branches to "main"

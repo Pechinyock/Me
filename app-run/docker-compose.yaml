@@ -13,7 +13,7 @@ services:
     environment:
       - API_APP_ENTRYPOINT=${API_APP_ENTRYPOINT}
     ports:
-      - 6969:5000
+      - 6969:5001
     networks:
       - app-storage_tt-api
     stdin_open: true # docker run -i
@@ -31,7 +31,7 @@ services:
     environment:
       - WEBCLIENT_APP_ENTRYPOINT=${WEBCLIENT_APP_ENTRYPOINT}
     ports:
-      - 6996:5001
+      - 6996:5002
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 

@@ -3,6 +3,8 @@ version: '3.9'
 services:
   dotnet-api-builder:
     container_name: dotnet-api-builder
+    depends_on:
+      - dotnet-libs-builder
     volumes:
       - app-api-bin:/tmp/${API_PROJECT_NAME}/Bin/${API_BUILD_CONFIGURATION}/net${API_DOTNET_SDK_VERSION}
     build: 

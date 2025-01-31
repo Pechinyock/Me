@@ -27,9 +27,21 @@ services:
     networks:
       - tt-auth
 
+  test-db:
+    container_name: tt-test-db
+    build: ./postgre
+    volumes:
+      - tt-testdb-storage:/var/lib/postgresql/data
+    ports:
+      - 11100:5432
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+
 volumes:
   tt-api-storage:
   tt-auth-storage:
+  tt-testdb-storage:
 
 networks:
   tt-api:

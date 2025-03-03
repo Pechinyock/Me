@@ -1,4 +1,4 @@
-/* [X] - Not done; [V] - Done */
+/* [X] - Not done; [V] - Done; [?] - thinking */
 
 [V] [TT-01] Shared libraries
     - TT.Core. For now it is in TT.Api solution, but sould be shared.
@@ -11,5 +11,18 @@
 
 ----------------------------------------------------------------------------------------------------
 
-[X] [TT-04] Create another service with GraphQL.
+[?] [TT-04] Create another service with GraphQL.
+
+----------------------------------------------------------------------------------------------------
+
 [X] [TT-07] Rename all "maseter" branches to "main"
+[X] [TT-08] Create tool kit. Contains:
+        - protoc
+        - swagger (generate api gateway clients)
+[X] [TT-09] Microservice is not an ASP.NET core app anymore, remake everything with siple console app
+[X] [TT-10] Services communication delete from TT.Core and make as separate package
+[X] [TT-11] Come up with communication lines between services. Every service should know only formats that he needs
+[X] [TT-12] Create automation tools:
+        - generate all classes with protoc
+        - pull every nupkg
+        - change version of nuget package
